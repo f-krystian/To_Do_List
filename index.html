@@ -13,7 +13,7 @@
         <button id="add-task-btn" class="add-task-btn">Add</button>
       </div>
       <div class="task-state-container">
-        <div class="task-status" id="all-tasks">
+        <div class="task-status-column" id="all-tasks">
           <h3 class="task-status_header">All Tasks</h3>
           <div class="task-items">
             <div class="task-item">
@@ -22,16 +22,26 @@
                 Sample text Sample text
               </span>
               <div class="task-item_buttons">
-                <button class="edit-btn">Edit</button>
-                <button class="delete-btn">Delete</button>
+                <button class="item-btn edit-btn">Edit</button>
+                <button class="item-btn delete-btn">Delete</button>
+              </div>
+            </div>
+            <div class="task-item">
+              <span class="task-text">Sample text example 2
+                Sample text example 2 
+              </span>
+              <div class="task-item_buttons">
+                <button class="item-btn edit-btn">Edit</button>
+                <button class="item-btn delete-btn">Delete</button>
               </div>
             </div>
           </div>
+          
         </div>
-        <div class="task-status" id="in-progress">
+        <div class="task-status-column" id="in-progress">
           <h3 class="task-status_header">In progress</h3>
         </div>
-        <div class="task-status" id="finished">
+        <div class="task-status-column" id="finished">
           <h3 class="task-status_header">Finished</h3>
         </div>
       </div>
