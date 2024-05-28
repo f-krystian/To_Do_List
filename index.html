@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do List App</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+      <div class="input-container">
+        <input type="text" name="taskInput" id="task-input" class="task-input">
+        <button id="add-task-btn" class="add-task-btn">Add</button>
+      </div>
+      <div class="task-state-container">
+        <div class="task-status" id="all-tasks">
+          <h3 class="task-status_header">All Tasks</h3>
+          <div class="task-items">
+            <div class="task-item">
+              <span class="task-text">Sample text
+                Sample text Sample text
+                Sample text Sample text
+              </span>
+              <div class="task-item_buttons">
+                <button class="edit-btn">Edit</button>
+                <button class="delete-btn">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="task-status" id="in-progress">
+          <h3 class="task-status_header">In progress</h3>
+        </div>
+        <div class="task-status" id="finished">
+          <h3 class="task-status_header">Finished</h3>
+        </div>
+      </div>
+    </div> 
+    <script src="app.js"></script>
+</body>
+</html>
