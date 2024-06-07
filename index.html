@@ -15,7 +15,7 @@
       <div class="task-state-container">
         <div class="task-status-column" id="all-tasks">
           <h3 class="task-status_header">All Tasks</h3>
-          <div class="task-items">
+          <div class ="task-items" id="all-tasks__items" draggable="true">
             <div class="task-item">
               <span class="task-text">Sample text
                 Sample text Sample text
@@ -34,18 +34,20 @@
                 <button class="item-btn edit-btn">Edit</button>
                 <button class="item-btn delete-btn">Delete</button>
               </div>
-            </div>
+            </div>            
           </div>
-          
+         
         </div>
         <div class="task-status-column" id="in-progress">
           <h3 class="task-status_header">In progress</h3>
+          <div class ="task-items"  id="in-progress__items" draggable="true"></div>
         </div>
         <div class="task-status-column" id="finished">
           <h3 class="task-status_header">Finished</h3>
+          <div class ="task-items"  id="finished__items" draggable="true"></div>
         </div>
       </div>
     </div> 
-    <script src="app.js"></script>
+    <script src="app.js" type="module"></script>
 </body>
 </html>
