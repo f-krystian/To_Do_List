@@ -1,6 +1,4 @@
 const dragAndDrop = function () {
-  console.log('Drag and drop: true');
-
   const taskItems = [...document.querySelectorAll('.task-item')];
 
   taskItems.forEach((taskItem) => {
