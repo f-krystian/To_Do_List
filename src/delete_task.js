@@ -1,3 +1,4 @@
+import { dragAndDrop } from './drag_and_drop.js';
 const deleteTask = function () {
   console.log(`Delete`);
   document.addEventListener('click', (e) => {

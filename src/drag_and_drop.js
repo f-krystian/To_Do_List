@@ -1,58 +1,71 @@
 const dragAndDrop = function () {
-  const taskItems = [...document.querySelectorAll('.task-item')];
+  console.log('Drag and drop : true');
 
-  taskItems.forEach((taskItem) => {
-    taskItem.setAttribute('draggable', 'true'); // Make task items draggable
-    taskItem.addEventListener('dragstart', (e) => {
-      e.dataTransfer.setData('text/plain', taskItem.dataset.id);
-    });
-  });
+  const initializeDragAndDrop = () => {
+    const taskItems = [...document.querySelectorAll('.task-item')];
 
-  const containers = [...document.querySelectorAll('.task-items')];
-
-  containers.forEach((container) => {
-    container.addEventListener('dragover', (e) => {
-      e.preventDefault();
+    taskItems.forEach((taskItem) => {
+      taskItem.draggable = true;
+      taskItem.addEventListener('dragstart', (e) => {
+        e.dataTransfer.setData('text/plain', taskItem.dataset.id);
+      });
     });
 
-    container.addEventListener('drop', (e) => {
-      e.preventDefault();
-      const taskId = e.dataTransfer.getData('text/plain');
-      const taskItem = document.querySelector(`[data-id="${taskId}"]`);
+    const containers = [...document.querySelectorAll('.task-items')];
 
-      if (taskItem) {
-        // Update State
-        switch (container.id) {
-          case 'all-tasks__items':
-            taskItem.dataset.state = 'all_tasks';
-            break;
-          case 'in-progress__items':
-            taskItem.dataset.state = 'in_progress';
-            break;
-          case 'finished__items':
-            taskItem.dataset.state = 'finished';
-            break;
-          default:
-            break;
-        }
+    containers.forEach((container) => {
+      container.addEventListener('dragover', (e) => {
+        e.preventDefault();
+      });
 
-        // Update Local Storage
-        const tasksDB = JSON.parse(localStorage.getItem('tasksDB')) || [];
-        const updatedTasksDB = tasksDB.map((task) => {
-          if (task.id === parseInt(taskId, 10)) {
-            task.state = taskItem.dataset.state;
+      container.addEventListener('drop', async (e) => {
+        e.preventDefault();
+        const taskId = e.dataTransfer.getData('text/plain');
+        const taskItem = document.querySelector(`[data-id="${taskId}"]`);
+
+        if (taskItem) {
+          // Update State
+          let newState;
+          switch (container.id) {
+            case 'all-tasks__items':
+              newState = 'all_tasks';
+              break;
+            case 'in-progress__items':
+              newState = 'in_progress';
+              break;
+            case 'finished__items':
+              newState = 'finished';
+              break;
+            default:
+              break;
           }
-          return task;
-        });
-        localStorage.setItem('tasksDB', JSON.stringify(updatedTasksDB));
 
-        // Move task item to new container
-        container.appendChild(taskItem);
-      } else {
-        console.error(`Task item with ID ${taskId} not found.`);
-      }
+          if (newState) {
+            taskItem.dataset.state = newState;
+
+            // Update Local Storage
+            const tasksDB = JSON.parse(localStorage.getItem('tasksDB')) || [];
+            const updatedTasksDB = tasksDB.map((task) => {
+              if (task._id === taskId) {
+                task.state = newState;
+              }
+              return task;
+            });
+            localStorage.setItem('tasksDB', JSON.stringify(updatedTasksDB));
+
+            // Move task item to new container
+            container.appendChild(taskItem);
+
+            // Optionally reinitialize drag and drop to ensure it's still functioning correctly
+            initializeDragAndDrop();
+          }
+        }
+      });
     });
-  });
+  };
+
+  // Initial setup
+  initializeDragAndDrop();
 };
 
 export { dragAndDrop };

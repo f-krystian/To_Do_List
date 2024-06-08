@@ -1,3 +1,5 @@
+import { dragAndDrop } from './drag_and_drop.js';
+
 const displayTasks = function () {
   const tasksDB = JSON.parse(localStorage.getItem('tasksDB')) || [];
   console.log(tasksDB);
@@ -39,6 +41,8 @@ const displayTasks = function () {
         break;
     }
   });
+
+  dragAndDrop();
 };
 
 export { displayTasks };

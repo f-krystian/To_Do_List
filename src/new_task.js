@@ -1,4 +1,5 @@
 import { displayTasks } from "./display_tasks.js";
+import { dragAndDrop } from './drag_and_drop.js';
 
 const addNewTask = function () {
   const taskInput = document.querySelector('.task-input');
